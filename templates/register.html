@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diet Pal</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/static/plugins/fontawesome-free/css/all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="/static/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/static/dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition register-page">
+<div class="register-box">
+   
+  {% if failed %}
+    <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fas fa-ban"></i> İşlem başarısız!</h5>
+        {{failed}}
+    </div>
+  {% endif %}
+  <div class="register-logo">
+    <a href="/register.html"><b>DIET</b> PAL</a>
+  </div>
+
+  <div class="card">
+    <div class="card-body register-card-body">
+      <p class="login-box-msg">Lütfen kayıt olunuz.</p>
+
+      <form action="/register" method="POST">
+        <div class="input-group mb-3">
+            <input name="kullanici_adi" id="kullanici_adi" type="text" class="form-control" placeholder="Kullanıcı Adı">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-user"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input name="sifre" id="sifre" type="password" class="form-control" placeholder="Şifre">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+              <input type="text" name="ad" id="ad" class="form-control" placeholder="Ad">
+              
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="soyad" id="soyad" class="form-control" placeholder="Soyad">
+              
+            </div>
+            <div class="input-group mb-3">
+              <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+              
+            </div>
+            <div class="input-group mb-3">
+              <select id="cinsiyet" name="cinsiyet" class="form-control custom-select">
+                  <option value="Kız" >Kız</option>
+                  <option value="Erkek">Erkek</option>
+                </select>
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="boy" id="boy" class="form-control" placeholder="Boy">
+            </div>
+            <div class="input-group mb-3">
+              <input type="text" name="kilo" id="kilo" class="form-control" placeholder="Kilo">
+            </div>
+            <div class="input-group mb-3">
+                <select id="lokasyon" name="lokasyon" class="form-control custom-select">
+                    <option value="Türkiye" >Türkiye</option>
+                    <option value="Rusya">Rusya</option>
+                  </select>
+              </div>
+              Doğum Tarihi:
+            <div class="input-group mb-3">
+                
+               
+              <input type="date" name="dogum_tarihi" id="dogum_tarihi" class="form-control" placeholder="Doğum Tarihi">
+            </div>
+            
+        <div class="row">
+         
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Kaydol</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <br>
+      <br>
+      <a href="login.html" class="text-center">Hesabım var</a>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
+
+<!-- jQuery -->
+<script src="/static/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/static/dist/js/adminlte.min.js"></script>
+</body>
+</html>

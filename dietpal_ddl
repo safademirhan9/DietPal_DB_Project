@@ -1,0 +1,589 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.0
+-- Dumped by pg_dump version 14.0
+
+-- Started on 2021-11-29 08:36:43
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 209 (class 1259 OID 26558)
+-- Name: Besinler; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Besinler" (
+    besin_adi character varying NOT NULL,
+    karbonhidrat_degeri double precision,
+    protein_degeri double precision,
+    yag_degeri double precision,
+    kalori integer
+);
+
+
+ALTER TABLE public."Besinler" OWNER TO postgres;
+
+--
+-- TOC entry 212 (class 1259 OID 26573)
+-- Name: Egzersizler; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Egzersizler" (
+    e_id integer NOT NULL,
+    egzersiz_adi character varying,
+    yakilan_kalori integer
+);
+
+
+ALTER TABLE public."Egzersizler" OWNER TO postgres;
+
+--
+-- TOC entry 211 (class 1259 OID 26572)
+-- Name: Egzersizler_e_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Egzersizler_e_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Egzersizler_e_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3389 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: Egzersizler_e_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Egzersizler_e_id_seq" OWNED BY public."Egzersizler".e_id;
+
+
+--
+-- TOC entry 217 (class 1259 OID 26598)
+-- Name: Gonderiler; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Gonderiler" (
+    gonderi_adi integer NOT NULL,
+    kullanici_adi character varying,
+    resim character varying,
+    resim_aciklamasi character varying,
+    olusturulma_tarihi date
+);
+
+
+ALTER TABLE public."Gonderiler" OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 26597)
+-- Name: Gonderiler_gonderi_adi_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Gonderiler_gonderi_adi_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Gonderiler_gonderi_adi_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3390 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: Gonderiler_gonderi_adi_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Gonderiler_gonderi_adi_seq" OWNED BY public."Gonderiler".gonderi_adi;
+
+
+--
+-- TOC entry 214 (class 1259 OID 26582)
+-- Name: Gunluk_Aktivite; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Gunluk_Aktivite" (
+    aktivite_id integer NOT NULL,
+    e_id integer,
+    kullanici_adi character varying,
+    egzersiz_adi character varying,
+    tarih date
+);
+
+
+ALTER TABLE public."Gunluk_Aktivite" OWNER TO postgres;
+
+--
+-- TOC entry 213 (class 1259 OID 26581)
+-- Name: Gunluk_Aktivite_aktivite_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Gunluk_Aktivite_aktivite_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Gunluk_Aktivite_aktivite_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3391 (class 0 OID 0)
+-- Dependencies: 213
+-- Name: Gunluk_Aktivite_aktivite_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Gunluk_Aktivite_aktivite_id_seq" OWNED BY public."Gunluk_Aktivite".aktivite_id;
+
+
+--
+-- TOC entry 215 (class 1259 OID 26590)
+-- Name: HazirDiyetler; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."HazirDiyetler" (
+    diyet_adi character varying NOT NULL,
+    diyet_icerigi character varying,
+    diyet_kalori double precision
+);
+
+
+ALTER TABLE public."HazirDiyetler" OWNER TO postgres;
+
+--
+-- TOC entry 226 (class 1259 OID 26662)
+-- Name: Tarifler; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Tarifler" (
+    tarif_id integer NOT NULL,
+    tarif_adi character varying,
+    yemek_tarifi character varying,
+    olusturulma_tarihi date,
+    kullanici_adi character varying
+);
+
+
+ALTER TABLE public."Tarifler" OWNER TO postgres;
+
+--
+-- TOC entry 225 (class 1259 OID 26661)
+-- Name: Tarifler_tarif_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Tarifler_tarif_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Tarifler_tarif_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3392 (class 0 OID 0)
+-- Dependencies: 225
+-- Name: Tarifler_tarif_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Tarifler_tarif_id_seq" OWNED BY public."Tarifler".tarif_id;
+
+
+--
+-- TOC entry 222 (class 1259 OID 26638)
+-- Name: icilen_su; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.icilen_su (
+    sid integer NOT NULL,
+    kullanici_adi character varying(255),
+    su_miktari integer,
+    icilme_tarihi date
+);
+
+
+ALTER TABLE public.icilen_su OWNER TO postgres;
+
+--
+-- TOC entry 221 (class 1259 OID 26637)
+-- Name: icilen_su_sid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.icilen_su_sid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.icilen_su_sid_seq OWNER TO postgres;
+
+--
+-- TOC entry 3393 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: icilen_su_sid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.icilen_su_sid_seq OWNED BY public.icilen_su.sid;
+
+
+--
+-- TOC entry 224 (class 1259 OID 26650)
+-- Name: kilo; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.kilo (
+    kid integer NOT NULL,
+    kullanici_adi character varying(255) NOT NULL,
+    kg integer,
+    olusturulma_tarihi date
+);
+
+
+ALTER TABLE public.kilo OWNER TO postgres;
+
+--
+-- TOC entry 223 (class 1259 OID 26649)
+-- Name: kilo_kid_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.kilo_kid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.kilo_kid_seq OWNER TO postgres;
+
+--
+-- TOC entry 3394 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: kilo_kid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.kilo_kid_seq OWNED BY public.kilo.kid;
+
+
+--
+-- TOC entry 220 (class 1259 OID 26625)
+-- Name: kisisel_bilgiler; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.kisisel_bilgiler (
+    kullanici_adi character varying(255) NOT NULL,
+    ad character varying(255),
+    soyad character varying(255),
+    email character varying(255),
+    cinsiyet character varying(5),
+    boy character varying(4),
+    dogum_tarihi date,
+    yas integer,
+    lokasyon character varying(255),
+    kalori_ihtiyaci integer
+);
+
+
+ALTER TABLE public.kisisel_bilgiler OWNER TO postgres;
+
+--
+-- TOC entry 210 (class 1259 OID 26565)
+-- Name: kullanicilar; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.kullanicilar (
+    kullanici_adi character varying(255) NOT NULL,
+    sifre text,
+    kayit_tarihi date
+);
+
+
+ALTER TABLE public.kullanicilar OWNER TO postgres;
+
+--
+-- TOC entry 219 (class 1259 OID 26607)
+-- Name: ogunler; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.ogunler (
+    a_id integer NOT NULL,
+    kullanici_adi character varying(255),
+    besin_adi character varying(255),
+    ogun_zamani character varying(255),
+    miktar integer,
+    toplam_kalori integer,
+    tarih date
+);
+
+
+ALTER TABLE public.ogunler OWNER TO postgres;
+
+--
+-- TOC entry 218 (class 1259 OID 26606)
+-- Name: ogunler_a_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.ogunler_a_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.ogunler_a_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3395 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: ogunler_a_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.ogunler_a_id_seq OWNED BY public.ogunler.a_id;
+
+
+--
+-- TOC entry 3210 (class 2604 OID 26576)
+-- Name: Egzersizler e_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Egzersizler" ALTER COLUMN e_id SET DEFAULT nextval('public."Egzersizler_e_id_seq"'::regclass);
+
+
+--
+-- TOC entry 3212 (class 2604 OID 26601)
+-- Name: Gonderiler gonderi_adi; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Gonderiler" ALTER COLUMN gonderi_adi SET DEFAULT nextval('public."Gonderiler_gonderi_adi_seq"'::regclass);
+
+
+--
+-- TOC entry 3211 (class 2604 OID 26585)
+-- Name: Gunluk_Aktivite aktivite_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Gunluk_Aktivite" ALTER COLUMN aktivite_id SET DEFAULT nextval('public."Gunluk_Aktivite_aktivite_id_seq"'::regclass);
+
+
+--
+-- TOC entry 3216 (class 2604 OID 26665)
+-- Name: Tarifler tarif_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Tarifler" ALTER COLUMN tarif_id SET DEFAULT nextval('public."Tarifler_tarif_id_seq"'::regclass);
+
+
+--
+-- TOC entry 3214 (class 2604 OID 26641)
+-- Name: icilen_su sid; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.icilen_su ALTER COLUMN sid SET DEFAULT nextval('public.icilen_su_sid_seq'::regclass);
+
+
+--
+-- TOC entry 3215 (class 2604 OID 26653)
+-- Name: kilo kid; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.kilo ALTER COLUMN kid SET DEFAULT nextval('public.kilo_kid_seq'::regclass);
+
+
+--
+-- TOC entry 3213 (class 2604 OID 26610)
+-- Name: ogunler a_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ogunler ALTER COLUMN a_id SET DEFAULT nextval('public.ogunler_a_id_seq'::regclass);
+
+
+--
+-- TOC entry 3218 (class 2606 OID 26564)
+-- Name: Besinler Besinler_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Besinler"
+    ADD CONSTRAINT "Besinler_pkey" PRIMARY KEY (besin_adi);
+
+
+--
+-- TOC entry 3222 (class 2606 OID 26580)
+-- Name: Egzersizler Egzersizler_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Egzersizler"
+    ADD CONSTRAINT "Egzersizler_pkey" PRIMARY KEY (e_id);
+
+
+--
+-- TOC entry 3228 (class 2606 OID 26605)
+-- Name: Gonderiler Gonderiler_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Gonderiler"
+    ADD CONSTRAINT "Gonderiler_pkey" PRIMARY KEY (gonderi_adi);
+
+
+--
+-- TOC entry 3224 (class 2606 OID 26589)
+-- Name: Gunluk_Aktivite Gunluk_Aktivite_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Gunluk_Aktivite"
+    ADD CONSTRAINT "Gunluk_Aktivite_pkey" PRIMARY KEY (aktivite_id);
+
+
+--
+-- TOC entry 3226 (class 2606 OID 26596)
+-- Name: HazirDiyetler HazirDiyetler_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."HazirDiyetler"
+    ADD CONSTRAINT "HazirDiyetler_pkey" PRIMARY KEY (diyet_adi);
+
+
+--
+-- TOC entry 3238 (class 2606 OID 26669)
+-- Name: Tarifler Tarifler_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Tarifler"
+    ADD CONSTRAINT "Tarifler_pkey" PRIMARY KEY (tarif_id);
+
+
+--
+-- TOC entry 3234 (class 2606 OID 26643)
+-- Name: icilen_su icilen_su_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.icilen_su
+    ADD CONSTRAINT icilen_su_pkey PRIMARY KEY (sid);
+
+
+--
+-- TOC entry 3236 (class 2606 OID 26655)
+-- Name: kilo kilo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.kilo
+    ADD CONSTRAINT kilo_pkey PRIMARY KEY (kid, kullanici_adi);
+
+
+--
+-- TOC entry 3232 (class 2606 OID 26631)
+-- Name: kisisel_bilgiler kisisel_bilgiler_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.kisisel_bilgiler
+    ADD CONSTRAINT kisisel_bilgiler_pkey PRIMARY KEY (kullanici_adi);
+
+
+--
+-- TOC entry 3220 (class 2606 OID 26571)
+-- Name: kullanicilar kullanicilar_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.kullanicilar
+    ADD CONSTRAINT kullanicilar_pkey PRIMARY KEY (kullanici_adi);
+
+
+--
+-- TOC entry 3230 (class 2606 OID 26614)
+-- Name: ogunler ogunler_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ogunler
+    ADD CONSTRAINT ogunler_pkey PRIMARY KEY (a_id);
+
+
+--
+-- TOC entry 3244 (class 2606 OID 26670)
+-- Name: Tarifler Tarifler_kullanici_adi_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Tarifler"
+    ADD CONSTRAINT "Tarifler_kullanici_adi_fkey" FOREIGN KEY (kullanici_adi) REFERENCES public.kullanicilar(kullanici_adi);
+
+
+--
+-- TOC entry 3242 (class 2606 OID 26644)
+-- Name: icilen_su icilen_su_kullanici_adi_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.icilen_su
+    ADD CONSTRAINT icilen_su_kullanici_adi_fkey FOREIGN KEY (kullanici_adi) REFERENCES public.kullanicilar(kullanici_adi);
+
+
+--
+-- TOC entry 3243 (class 2606 OID 26656)
+-- Name: kilo kilo_kullanici_adi_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.kilo
+    ADD CONSTRAINT kilo_kullanici_adi_fkey FOREIGN KEY (kullanici_adi) REFERENCES public.kullanicilar(kullanici_adi);
+
+
+--
+-- TOC entry 3241 (class 2606 OID 26632)
+-- Name: kisisel_bilgiler kisisel_bilgiler_kullanici_adi_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.kisisel_bilgiler
+    ADD CONSTRAINT kisisel_bilgiler_kullanici_adi_fkey FOREIGN KEY (kullanici_adi) REFERENCES public.kullanicilar(kullanici_adi);
+
+
+--
+-- TOC entry 3240 (class 2606 OID 26620)
+-- Name: ogunler ogunler_besin_adi_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ogunler
+    ADD CONSTRAINT ogunler_besin_adi_fkey FOREIGN KEY (besin_adi) REFERENCES public."Besinler"(besin_adi);
+
+
+--
+-- TOC entry 3239 (class 2606 OID 26615)
+-- Name: ogunler ogunler_kullanici_adi_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ogunler
+    ADD CONSTRAINT ogunler_kullanici_adi_fkey FOREIGN KEY (kullanici_adi) REFERENCES public.kullanicilar(kullanici_adi);
+
+
+-- Completed on 2021-11-29 08:36:44
+
+--
+-- PostgreSQL database dump complete
+--
+
